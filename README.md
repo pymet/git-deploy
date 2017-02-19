@@ -36,29 +36,29 @@ optional arguments:
 #### Simple
 
 ```sh
-$ python3 git-deploy.py myprojec
+$ python3 git-deploy.py myproject
 ```
 
 ```
 Add or set the remote url:
-        git remote add dev git@123.123.123.123:myprojec
-        git remote set-url dev git@123.123.123.123:myprojec
+        git remote add dev git@123.123.123.123:myproject
+        git remote set-url dev git@123.123.123.123:myproject
 
 
-Clone the script branch:
-        git clone -b hooks git@123.123.123.123:myprojec myprojec-hooks
+Clone the hooks branch:
+        git clone -b hooks git@123.123.123.123:myproject myproject-hooks
 ```
 
 #### Offline
 
 ```sh
-$ python3 git-deploy.py myprojec --offline
+$ python3 git-deploy.py myproject --offline
 ```
 
 #### Verbose
 
 ```sh
-$ python3 git-deploy.py myprojec --verbose --offline
+$ python3 git-deploy.py myproject --verbose --offline
 ```
 
 ```
@@ -84,6 +84,27 @@ chmod 755 pre-receive post-receive
 Working in /home/git/myproject
 
 git --work-tree=/home/git/myproject/hooks/custom checkout hooks -f --quiet
+```
+
+#### Customize branch
+
+```sh
+$ python3 git-deploy.py myproject -b custom-hooks
+```
+```
+...
+Clone the custom-hooks branch:
+        git clone -b custom-hooks git@123.123.123.123:myproject myproject-hooks
+...
+```
+
+#### Customize the commit
+
+```sh
+$ python3 git-deploy.py myproject            \
+          --git-user "John Doe"              \
+          --git-email "john.doe@localhost"   \
+          --git-message "Hello World!"
 ```
 
 ### Acknowledgement
