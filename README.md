@@ -1,4 +1,5 @@
 # git-deploy
+
 Deploy a git repo using git-hooks
 
 ### Usage
@@ -32,8 +33,6 @@ optional arguments:
 ```
 
 ### Examples
-
-#### Simple
 
 ```sh
 $ python3 git-deploy.py myproject
