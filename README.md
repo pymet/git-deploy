@@ -1,6 +1,8 @@
 # git-deploy
 
-Deploy a git repo using git-hooks
+Deploy a git repo using git-hooks, because `git push pruduction` is just awesome. To get more details about automated tasks using git hooks please follow: [how-to-use-git-hooks-to-automate-development-and-deployment-tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks) or [setting-up-push-to-deploy-with-git](http://krisjordan.com/essays/setting-up-push-to-deploy-with-git) or [using-git-to-deploy-code](http://mikeeverhart.net/2013/01/using-git-to-deploy-code).
+
+**To get the server setup, please follow the [Prerequisites](https://github.com/pymet/git-deploy/blob/master/PREREQUISITES.md) section.**
 
 ### Usage
 
@@ -8,6 +10,10 @@ Deploy a git repo using git-hooks
 wget https://pymet.github.io/git-deploy/git-deploy.py
 python3 git-deploy.py myproject
 ```
+
+### Download
+
+You can download the script [here](https://pymet.github.io/git-deploy/git-deploy.py) or [here](https://raw.githubusercontent.com/pymet/git-deploy/master/git-deploy.py).
 
 ### Configuration
 
