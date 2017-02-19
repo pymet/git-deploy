@@ -9,6 +9,80 @@ wget https://pymet.github.io/git-deploy/git-deploy.py
 python3 git-deploy.py myproject
 ```
 
+### Configuration
+
+The default `config.json` is the following:
+
+```json
+{
+	"*": {
+		"allow": true,
+		"work-tree": null,
+		"pre-message": null,
+		"post-message": null,
+		"timeout-message": null,
+		"timeout": null,
+		"exec": null
+	}
+}
+```
+
+The `"*"` rule will match **any** of the branches except for those that have a custom rule set.
+The following snippet will allow push for the master branch **only**.
+
+```json
+{
+	"master": {
+		"allow": true
+	},
+	"*": {
+		"allow": false
+	}
+}
+```
+
+- The `allow` parameter will be used in the `pre-receive` step. If `allow` is set to `false`, the branch will be **rejected**.
+- If `work-tree` parameter is not `null`, the content of the branch will be checked out there. The folder will be created if does not exists.
+
+> #### Deploy to /var/www/html
+> 
+> ```json
+> {
+> 	"master": {
+> 		"work-tree": "/var/www/html"
+> 	}
+> }
+> ```
+
+- `pre-message`, `post-message` and `timeout-message` will be printed in the git push result.
+
+```json
+{
+	"master": {
+		"pre-message": "This is the pre-message",
+		"post-message": "This is the post-message",
+		"timeout-message": "This is the timeout-message",
+		"timeout": 1.0,
+		"exec": "sleep 3"
+	}
+}
+```
+
+```sh
+$ git push dev
+```
+
+```
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 246 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: This is the pre-message
+remote: This is the post-message
+remote: This is the timeout-message
+To 138.68.79.224:testrepo
+   b1556f2..9a3b525  master -> master
+```
+
 ### Help
 
 ```
