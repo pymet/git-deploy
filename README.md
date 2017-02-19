@@ -47,12 +47,12 @@ The following snippet will allow push for the master branch **only**.
 > #### Deploy to /var/www/html
 > 
 > ```json
-> {
-> 	"master": {
-> 		"work-tree": "/var/www/html"
-> 	}
-> }
-> ```
+{
+	"master": {
+		"work-tree": "/var/www/html"
+	}
+}
+```
 
 - `pre-message`, `post-message` and `timeout-message` will be printed in the git push result.
 
@@ -68,9 +68,7 @@ The following snippet will allow push for the master branch **only**.
 }
 ```
 
-```sh
-$ git push dev
-```
+Running **git push dev**
 
 ```
 Counting objects: 3, done.
@@ -79,8 +77,46 @@ Total 3 (delta 0), reused 0 (delta 0)
 remote: This is the pre-message
 remote: This is the post-message
 remote: This is the timeout-message
-To 138.68.79.224:testrepo
+To 123.123.123.123:testrepo
    b1556f2..9a3b525  master -> master
+```
+
+> #### Disallow a branch
+> 
+> ```json
+{
+	"master": {
+		"allow": false,
+		"pre-message": "One does not simpli push the master here. (try dev)"
+	},
+	"dev": {
+		"allow": false,
+		"work-tree": "/var/www/html"
+	}
+}
+```
+> 
+> Running **git push dev**
+> ```
+Counting objects: 3, done.
+Writing objects: 100% (3/3), 247 bytes | 0 bytes/s, done.
+Total 3 (delta 0), reused 0 (delta 0)
+remote: One does not simpli push the master here. (try dev)
+To 123.123.123.123:testrepo
+ ! [remote rejected] master -> master (pre-receive hook declined)
+error: failed to push some refs to 'root@123.123.123.123:testrepo'
+```
+
+#### Broken config file
+
+```
+Counting objects: 2, done.
+Writing objects: 100% (2/2), 197 bytes | 0 bytes/s, done.
+Total 2 (delta 0), reused 0 (delta 0)
+remote: Config file is broken: Expecting property name enclosed in double quotes: line 5 column 2 (char 106)
+remote: Config file is broken: Expecting property name enclosed in double quotes: line 5 column 2 (char 106)
+To 123.123.123.123:testrepo
+   9a3b525..47cd617  master -> master
 ```
 
 ### Help
@@ -116,7 +152,6 @@ $ python3 git-deploy.py myproject
 Add or set the remote url:
         git remote add dev git@123.123.123.123:myproject
         git remote set-url dev git@123.123.123.123:myproject
-
 
 Clone the hooks branch:
         git clone -b hooks git@123.123.123.123:myproject myproject-hooks
