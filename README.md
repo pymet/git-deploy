@@ -128,6 +128,24 @@ To 123.123.123.123:testrepo
 error: failed to push some refs to 'root@123.123.123.123:testrepo'
 ```
 
+#### Complex task
+
+Place **complex-task.sh** next to the **config.json**. Once the master branch is pushed, the **complex-task.sh**.
+
+```
++ myproject-hooks/
+|      config.json
+|      complex-task.sh
+```
+
+```json
+{
+	"master": {
+		"exec": "sh complex-task.sh"
+	}
+}
+```
+
 #### Broken config file
 
 ```
