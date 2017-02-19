@@ -92,19 +92,19 @@ To 123.123.123.123:testrepo
 }
 ```
 
-> #### Exec can be given as a list
-> 
-> ```
+#### Exec can be given as a list
+
+```
 "exec": "make -C /path/to/your/project"
 ```
-> is the same as:
-> ```
+is the same as:
+```
 "exec": ["make", "-C", "/path/to/your/project"]
 ```
 
-> #### Disallow a branch
-> 
-> ```json
+#### Disallow a branch
+
+```json
 {
 	"master": {
 		"allow": false,
@@ -116,9 +116,9 @@ To 123.123.123.123:testrepo
 	}
 }
 ```
-> 
-> Running **git push dev**
-> ```
+
+Running **git push dev**
+```
 Counting objects: 3, done.
 Writing objects: 100% (3/3), 247 bytes | 0 bytes/s, done.
 Total 3 (delta 0), reused 0 (delta 0)
@@ -130,7 +130,7 @@ error: failed to push some refs to 'root@123.123.123.123:testrepo'
 
 #### Complex task
 
-Place **complex-task.sh** next to the **config.json**. Once the master branch is pushed, the **complex-task.sh**.
+Place **complex-task.sh** next to the **config.json**. Once the master branch is pushed, the **complex-task.sh** will be called.
 
 ```
 + myproject-hooks/
@@ -145,6 +145,8 @@ Place **complex-task.sh** next to the **config.json**. Once the master branch is
 	}
 }
 ```
+
+- If `timeout` is not `null`, the task will be killed after `timeout` seconds and the `timeout-message` will be shown.
 
 #### Broken config file
 
