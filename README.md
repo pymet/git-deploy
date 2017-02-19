@@ -81,6 +81,27 @@ To 123.123.123.123:testrepo
    b1556f2..9a3b525  master -> master
 ```
 
+- If `exec` is not `null`, it will be executed after the repo is checked out.
+
+```json
+{
+	"master": {
+		"work-tree": "/path/to/your/project",
+		"exec": "make -C /path/to/your/project"
+	}
+}
+```
+
+> #### Exec can be given as a list
+> 
+> ```
+"exec": "make -C /path/to/your/project"
+```
+> is the same as:
+> ```
+"exec": ["make", "-C", "/path/to/your/project"]
+```
+
 > #### Disallow a branch
 > 
 > ```json
