@@ -44,9 +44,9 @@ The following snippet will allow push for the master branch **only**.
 - The `allow` parameter will be used in the `pre-receive` step. If `allow` is set to `false`, the branch will be **rejected**.
 - If `work-tree` parameter is not `null`, the content of the branch will be checked out there. The folder will be created if does not exists.
 
-> #### Deploy to /var/www/html
-> 
-> ```json
+#### Deploy to /var/www/html
+
+```json
 {
 	"master": {
 		"work-tree": "/var/www/html"
@@ -147,6 +147,16 @@ Place **complex-task.sh** next to the **config.json**. Once the master branch is
 ```
 
 - If `timeout` is not `null`, the task will be killed after `timeout` seconds and the `timeout-message` will be shown.
+
+```json
+{
+	"master": {
+		"timeout-message": "No one can sleep 5 seconds under 2.5 seconds",
+		"timeout": 2.5,
+		"exec": "sleep 5"
+	}
+}
+```
 
 #### Broken config file
 
