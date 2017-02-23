@@ -1,6 +1,6 @@
 # git-deploy
 
-Deploy a git repo using git-hooks, because `git push pruduction` is just awesome. To get more details about automated tasks using git hooks please follow: [how-to-use-git-hooks-to-automate-development-and-deployment-tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks) or [setting-up-push-to-deploy-with-git](http://krisjordan.com/essays/setting-up-push-to-deploy-with-git) or [using-git-to-deploy-code](http://mikeeverhart.net/2013/01/using-git-to-deploy-code).
+Deploy a git repo using git-hooks, because `git push production` is just awesome. To get more details about automated tasks using git hooks please follow: [how-to-use-git-hooks-to-automate-development-and-deployment-tasks](https://www.digitalocean.com/community/tutorials/how-to-use-git-hooks-to-automate-development-and-deployment-tasks) or [setting-up-push-to-deploy-with-git](http://krisjordan.com/essays/setting-up-push-to-deploy-with-git) or [using-git-to-deploy-code](http://mikeeverhart.net/2013/01/using-git-to-deploy-code).
 
 **To get the server setup, please follow the [Prerequisites](https://github.com/pymet/git-deploy/blob/master/PREREQUISITES.md) section.**
 
