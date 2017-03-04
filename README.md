@@ -117,7 +117,7 @@ is the same as:
 		"pre-message": "One does not simpli push the master here. (try dev)"
 	},
 	"dev": {
-		"allow": false,
+		"allow": true,
 		"work-tree": "/var/www/html"
 	}
 }
