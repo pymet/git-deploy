@@ -319,9 +319,9 @@ if args.verbose:
 
 os.mkdir(custom)
 
-open('HEAD', 'w').write('ref: refs/heads/%s\n' % args.branch)
+open(os.path.join(args.path, 'HEAD'), 'w').write('ref: refs/heads/%s\n' % args.branch)
 execute(['git', '--work-tree=' + custom, 'checkout', args.branch, '-f', '--quiet'], args.path)
-open('HEAD', 'w').write('ref: refs/heads/master\n')
+open(os.path.join(args.path, 'HEAD'), 'w').write('ref: refs/heads/master\n')
 
 
 # show the hints
