@@ -1,7 +1,8 @@
 #!/usr/bin/python3
 
+# pylint: disable=C0103, C0111
+
 import os
-import sys
 import subprocess
 import getpass
 import argparse
@@ -242,7 +243,8 @@ try:
     cmd_join = subprocess.list2cmdline
 
 except AttributeError:
-    def cmd_join(x): return str(x)
+    def cmd_join(x):
+        return str(x)
 
 
 def execute(cmd, cwd):
@@ -300,8 +302,8 @@ with tempfile.TemporaryDirectory() as temp:
 
     open(os.path.join(temp, 'config.json'), 'w').write(config.strip('\n') + '\n')
 
-    for cmd in branch_commands:
-        execute(cmd, temp)
+    for command in branch_commands:
+        execute(command, temp)
 
 
 # initialize hooks
@@ -313,8 +315,8 @@ open(os.path.join(hooks, 'receive.py'), 'w').write(receive.replace('HOOKS_BRANCH
 if args.verbose:
     print('\nWorking in %s\n' % hooks)
 
-for cmd in hooks_commands:
-    execute(cmd, hooks)
+for command in hooks_commands:
+    execute(command, hooks)
 
 
 # checkout hooks
