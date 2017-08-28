@@ -1,17 +1,23 @@
 #!/usr/bin/python3
 
-import os, sys, subprocess, getpass, argparse, tempfile, urllib.request
+import os
+import sys
+import subprocess
+import getpass
+import argparse
+import tempfile
+import urllib.request
 
 
-parser = argparse.ArgumentParser(description = 'Generate repository and branch for git-hooks')
-parser.add_argument('path', help = 'Path for the git repository')
-parser.add_argument('-o', '--origin', default = 'dev', help = 'Origin to use for the hint')
-parser.add_argument('-b', '--branch', default = 'hooks', help = 'Branch for the hooks')
-parser.add_argument('-v', '--verbose', action = 'store_true', default = False, help = 'Set verbosity')
-parser.add_argument('--git-user', default = 'GitBot', help = 'Username for the commit')
-parser.add_argument('--git-email', default = 'gitbot@localhost', help = 'Email for the commit')
-parser.add_argument('--git-msg', default = 'Initial config', help = 'Message for the commit')
-parser.add_argument('--offline', action = 'store_true', default = False, help = 'Skip using online tools for detecting the host IP')
+parser = argparse.ArgumentParser(description='Generate repository and branch for git-hooks')
+parser.add_argument('path', help='Path for the git repository')
+parser.add_argument('-o', '--origin', default='dev', help='Origin to use for the hint')
+parser.add_argument('-b', '--branch', default='hooks', help='Branch for the hooks')
+parser.add_argument('-v', '--verbose', action='store_true', default=False, help='Set verbosity')
+parser.add_argument('--git-user', default='GitBot', help='Username for the commit')
+parser.add_argument('--git-email', default='gitbot@localhost', help='Email for the commit')
+parser.add_argument('--git-msg', default='Initial config', help='Message for the commit')
+parser.add_argument('--offline', action='store_true', default=False, help='Skip IP detecting')
 args = parser.parse_args()
 
 args.path = os.path.normpath(os.path.abspath(args.path))
@@ -213,11 +219,14 @@ for line in lines:
 
 # commands
 
+name = 'user.name=' + args.git_user
+email = 'user.email=' + args.git_email
+
 branch_commands = [
     ['git', 'init', '--quiet'],
     ['git', 'add', 'config.json'],
     ['git', 'checkout', '-b', args.branch, '--quiet'],
-    ['git', '-c', 'user.name=' + args.git_user, '-c', 'user.email=' + args.git_email, 'commit', '-m', args.git_msg, '--quiet'],
+    ['git', '-c', name, '-c', email, 'commit', '-m', args.git_msg, '--quiet'],
     ['git', 'remote', 'add', 'origin', args.path],
     ['git', 'push', 'origin', args.branch, '--quiet'],
 ]
@@ -232,8 +241,8 @@ hooks_commands = [
 try:
     cmd_join = subprocess.list2cmdline
 
-except:
-    cmd_join = lambda x: str(x)
+except AttributeError:
+    def cmd_join(x): return str(x)
 
 
 def execute(cmd, cwd):
